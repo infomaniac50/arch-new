@@ -1,0 +1,53 @@
+#!/bin/bash
+
+OUTPUT="arch-new.tar.gz"
+INPUT="*.sh"
+MESSAGE=""
+RETVAL='0'
+
+function build()
+{
+    if [[ ! -f "$OUTPUT" ]]; then
+        tar -czf $OUTPUT $INPUT
+    else
+        MESSAGE="Build already exists."
+        RETVAL='1'
+    fi
+}
+
+function clean()
+{
+    if [[ -f "$OUTPUT" ]]; then
+        rm "$OUTPUT"
+    else
+        MESSAGE="Build not found."
+        RETVAL='1'
+    fi
+}
+
+case "$1" in
+    build )
+    echo -n "Building..."
+    build
+        ;;
+    clean )
+    echo -n "Cleaning..."
+    clean
+        ;;
+    *)
+    MESSAGE="Usage: arch-make [build|clean]"
+    RETVAL='1'
+    ;;
+esac
+
+if [[ -n "$1" ]]; then
+    if [[ $RETVAL == '0' ]]; then
+        echo " Success"
+    else
+        echo " Failed"
+    fi
+fi
+
+if [[ -n $MESSAGE ]]; then
+    echo $MESSAGE
+fi
