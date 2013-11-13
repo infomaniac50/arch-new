@@ -1,6 +1,11 @@
 #!/bin/bash
 
 function ask_yesno() {
+    if [[ -n $1 ]]; then
+        echo -n $1" "
+    fi
+
+    read -p "[yes/no] " YESNO
     if [[ $YESNO == 'yes' || $YESNO == 'y' || $YESNO == 'Y' || $YESNO == 'YES' ]]; then 
         echo ":)"
         return 0
@@ -14,9 +19,7 @@ function edit_pause() {
     if [[ -n $1 ]]; then
         echo -n $1" "
     fi
-
-    echo "Press ENTER to continue."
-    read
+    read -p "Press ENTER to continue."
 }
 
 function arch_term()
@@ -29,15 +32,12 @@ function arch_term()
     nano /etc/locale.gen
     locale-gen
 
-    echo "Set your LANG variable. Usually the same as your locale."
-    read LANG
+    echo "Set your LANG variable. Usually it's same as your locale."
+    read -p "LANG=" LANG
     export LANG
 
     echo "Test internet connectivity"
     ping -c3 www.google.com
 
-    echo "Was the ping successful? [yes/no]"
-    read YESNO
-
-    ask_yesno || exit 1
+    ask_yesno "Was the ping successful?" || exit 1
 }

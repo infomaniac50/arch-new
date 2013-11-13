@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source arch-common.sh
+source /root/arch-common.sh
 
 arch_term
 
@@ -25,15 +25,13 @@ done
 
 hwclock --systohc --utc
 
-echo -n "Choose a hostname for this system:"
-read HOSTNAME
+read -p "Choose a hostname for this system:" HOSTNAME
 
 echo $HOSTNAME > /etc/hostname
 
-echo "Would you like to set a root password?"
-ask_yesno && passwd
+ask_yesno "Would you like to set a root password?" && passwd
 
-pacman -S syslinux
+pacman -S syslinux --noconfirm
 syslinux-install_update -i -a -m 
 
 edit_pause "Edit your syslinux config now."

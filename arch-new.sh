@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source arch-common.sh
+source /root/arch-common.sh
 
 arch_term
 
