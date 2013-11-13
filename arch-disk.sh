@@ -29,6 +29,8 @@ read -p "Choose a hostname for this system:" HOSTNAME
 
 echo $HOSTNAME > /etc/hostname
 
+ask_yesno "Would you like to enable DHCP." && systemctl enable dhcpcd.service
+
 ask_yesno "Would you like to set a root password?" && passwd
 
 pacman -S syslinux --noconfirm
