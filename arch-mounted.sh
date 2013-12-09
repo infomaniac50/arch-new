@@ -6,6 +6,7 @@ ask_yesno "Have you mounted your partitions?" || exit 1
 
 echo "Where should I pacstrap and chroot to?"
 echo "Note: We assume no root / has been added. It will be added later automatically."
+echo "For example, \"mnt\" per the Arch Linux Wiki."
 read ARCHFRESH
 
 pacstrap -i "/$ARCHFRESH" base
