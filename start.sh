@@ -5,7 +5,7 @@ source /root/arch-common.sh
 arch_term
 
 curl -Ss http://pastebin.ca/raw/2404700 | tr -d "\r" > pacmrr
-bash pacmrr
+bash pacmrr < pacmrr.stdin
 
 echo ""
 echo "We are done for now."
