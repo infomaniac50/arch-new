@@ -9,7 +9,7 @@ echo "Note: We assume no root / has been added. It will be added later automatic
 echo "For example, \"mnt\" per the Arch Linux Wiki."
 read ARCHFRESH
 
-pacstrap -i "/$ARCHFRESH" base
+pacstrap -i "/$ARCHFRESH" base < pacstrap.stdin
 
 genfstab -U -p "/$ARCHFRESH" >> "/$ARCHFRESH/etc/fstab"
 
