@@ -25,7 +25,7 @@ done
 
 hwclock --systohc --utc
 
-read -p "Choose a hostname for this system:" HOSTNAME
+read -p "Enter a hostname for this system:" HOSTNAME
 
 echo $HOSTNAME > /etc/hostname
 

@@ -13,7 +13,7 @@ pacstrap -i "/$ARCHFRESH" base < pacstrap.stdin
 
 genfstab -U -p "/$ARCHFRESH" >> "/$ARCHFRESH/etc/fstab"
 
-edit_pause "Edit your fstab now."
+edit_pause "Verify/Edit your fstab now."
 nano "/$ARCHFRESH/etc/fstab"
 
 cp arch-common.sh "/$ARCHFRESH/root/"
@@ -24,6 +24,7 @@ arch-chroot "/$ARCHFRESH" /root/arch-disk.sh
 rm "/$ARCHFRESH/root/arch-common.sh"
 rm "/$ARCHFRESH/root/arch-disk.sh"
 
+echo "Unmounting disks."
 umount -R "/$ARCHFRESH"
 
 echo ""

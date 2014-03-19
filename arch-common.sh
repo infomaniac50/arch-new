@@ -22,20 +22,27 @@ function edit_pause() {
     read -p "Press ENTER to continue."
 }
 
+function export_lang()
+{
+    echo "Set your LANG variable. Usually it's same as your locale."
+    read -p "LANG=" LANG
+    export LANG
+}
+
+function edit_locale_gen()
+{
+    edit_pause "Edit your locale.conf file now."
+
+    nano /etc/locale.gen
+    locale-gen
+}
+
 function arch_term()
 {
     loadkeys us
     setfont Lat2-Terminus16
 
-    edit_pause "Edit your locale.conf file now."
-
-    nano /etc/locale.gen
-    locale-gen
-
-    echo "Set your LANG variable. Usually it's same as your locale."
-    read -p "LANG=" LANG
-    export LANG
-
+    ask_yesno "Would you like me to edit your locale?" && export_lang && 
     echo "Test internet connectivity"
     ping -c3 www.google.com
 
